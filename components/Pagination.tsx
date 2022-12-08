@@ -1,11 +1,10 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
-import React from 'react'
 import {
-  PaginationContainer,
-  PaginationResults,
-  PaginationPages,
   PaginationButton,
+  PaginationContainer,
   PaginationContent,
+  PaginationPages,
+  PaginationResults,
 } from './Styles'
 
 interface PaginationProps {
@@ -14,11 +13,7 @@ interface PaginationProps {
   handlePageChange: any
 }
 
-const Pagination = ({
-  length,
-  currentPage,
-  handlePageChange,
-}: PaginationProps) => {
+const Pagination = ({ length, currentPage, handlePageChange }: PaginationProps) => {
   return (
     <PaginationContainer>
       <PaginationContent>
@@ -27,11 +22,7 @@ const Pagination = ({
         </PaginationResults>
         <div>
           <PaginationPages aria-label="Pagination">
-            <PaginationButton
-              onClick={() =>
-                currentPage > 0 && handlePageChange(currentPage - 1)
-              }
-            >
+            <PaginationButton onClick={() => currentPage > 0 && handlePageChange(currentPage - 1)}>
               <span>Previous</span>
               <ChevronLeftIcon tw="w-5 h-5" aria-hidden="true" />
             </PaginationButton>
