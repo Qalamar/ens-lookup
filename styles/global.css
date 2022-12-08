@@ -1,0 +1,27 @@
+@font-face {
+  src: url('../fonts/Greycliff-Bold.woff2');
+  font-family: 'Greycliff Arabic CF';
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  src: url('../fonts/Greycliff-SemiBold.woff2');
+  font-family: 'Greycliff Arabic CF';
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  src: url('../fonts/Greycliff-Medium.woff2');
+  font-family: 'Greycliff Arabic CF';
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  src: url('../fonts/Greycliff-Regular.woff2');
+  font-family: 'Greycliff Arabic CF';
+  font-weight: normal;
+  font-style: normal;
+}
