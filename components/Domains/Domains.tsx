@@ -9,7 +9,7 @@ import {
 } from 'components/Styles'
 import { motion } from 'framer-motion'
 import 'twin.macro'
-import { paginate, truncateEthAddress } from 'utils/helpers'
+import { getDate, paginate, truncateEthAddress } from 'utils/helpers'
 
 interface DomainsProps {
   data: any
@@ -41,16 +41,8 @@ const Domains = ({ data, currentPage }: DomainsProps) => {
                   {truncateEthAddress(item?.registrant?.id)}
                 </TableCell>
                 <TableCell>{item?.domain?.name}</TableCell>
-                <TableCell>
-                  {new Date(
-                    item.registrationDate ? item.registrationDate * 1000 : '',
-                  ).toLocaleString('en-GB', { timeZone: 'UTC' })}
-                </TableCell>
-                <TableCell>
-                  {new Date(item.expiryDate ? item.expiryDate * 1000 : '').toLocaleString('en-GB', {
-                    timeZone: 'UTC',
-                  })}
-                </TableCell>
+                <TableCell>{getDate(item.registrationDate)}</TableCell>
+                <TableCell>{getDate(item.expiryDate)}</TableCell>
               </motion.tr>
             ))}
           </TableBody>

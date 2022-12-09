@@ -1,12 +1,12 @@
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import { cache } from '@emotion/css'
 import { CacheProvider } from '@emotion/react'
 import type { AppProps } from 'next/app'
-import GlobalStyles from 'styles/GlobalStyles'
-import { WagmiConfig, createClient, configureChains, mainnet } from 'wagmi'
+import { configureChains, createClient, mainnet, WagmiConfig } from 'wagmi'
 import { publicProvider } from 'wagmi/providers/public'
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client'
+import GlobalStyles from '../styles/GlobalStyles'
 
-const { chains, provider, webSocketProvider } = configureChains([mainnet], [publicProvider()])
+const { provider, webSocketProvider } = configureChains([mainnet], [publicProvider()])
 
 export const client = createClient({
   autoConnect: true,

@@ -1,15 +1,15 @@
+import 'twin.macro'
 import { useQuery } from '@apollo/client'
-import Domains from 'components/Domains'
-import Pagination from 'components/Pagination'
-import Search from 'components/Search'
+import Domains from 'components/Domains/Domains'
+import Pagination from 'components/Pagination/Pagination'
+import Search from 'components/Search/Search'
 import Shimmer from 'components/Shimmer'
 import { Layout } from 'components/Styles'
 import { useEffect, useState } from 'react'
-import 'twin.macro'
 import { GetRegistrationsQuery } from 'types/queries/graphql'
 import { GET_REGISTRATIONS } from 'utils/queries'
 import { client } from './_app'
-
+import { lookupRegistrantId } from 'utils/helpers'
 const App = () => {
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [formattedData, setFormattedData] = useState<GetRegistrationsQuery['registrations']>()
@@ -24,11 +24,7 @@ const App = () => {
     if (data) {
       Promise.all(
         structuredClone(data.registrations).map(async object => {
-          object.registrant.id = await client.provider
-            .lookupAddress(object.registrant.id)
-            .then(value => {
-              return value ? value : object.registrant.id
-            })
+          object.registrant.id = await lookupRegistrantId(client, object.registrant.id)
           return object
         }),
       ).then(value => {
@@ -59,11 +55,7 @@ const App = () => {
       <Layout>
         <Search />
         <Domains data={formattedData} currentPage={currentPage} />
-        <Pagination
-          length={formattedData.length}
-          currentPage={currentPage}
-          handlePageChange={handlePageChange}
-        />
+        <Pagination length={formattedData.length} currentPage={currentPage} handlePageChange={handlePageChange} />
       </Layout>
     )
 }

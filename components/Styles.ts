@@ -57,6 +57,27 @@ const PaginationButton = styled.button(({ numbered, active }: { numbered?: boole
   active && tw`z-10 text-indigo-600 border-indigo-500 bg-indigo-50`,
 ])
 
+const DomainInfo = styled.div`
+${tw`mt-10 text-sm flex-col max-w-xs mx-auto flex justify-center`}`
+
+const Form = styled.form`
+${tw`sm:flex justify-center my-6`}`
+
+const InputContainer = styled.div`
+${tw`flex flex-col space-y-1`}`
+
+const Input = styled.input`
+${tw`w-full px-4 py-2 placeholder-gray-400 border border-gray-400 rounded-md focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-white sm:max-w-xs transition duration-200`}`
+
+const ErrorMessage = styled.div`
+${tw`text-xs text-red-500`}`
+
+const ButtonContainer = styled.div`
+${tw`mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0`}`
+
+const Button = styled.button`
+${tw`flex items-center disabled:(cursor-wait opacity-50) min-w-[6rem] justify-center w-full px-5 py-2 text-base font-medium text-white bg-indigo-500 transition duration-200 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white`}`
+
 export {
   Layout,
   Scrollable,
@@ -71,5 +92,12 @@ export {
   PaginationContent,
   PaginationPages,
   PaginationButton,
-  PaginationResults
+  PaginationResults,
+  DomainInfo,
+  Form,
+  InputContainer,
+  Input,
+  ErrorMessage,
+  ButtonContainer,
+  Button
 }

@@ -1,11 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
-import {
-  PaginationButton,
-  PaginationContainer,
-  PaginationContent,
-  PaginationPages,
-  PaginationResults,
-} from './Styles'
+import { PaginationButton, PaginationContainer, PaginationContent, PaginationPages, PaginationResults } from '../Styles'
 
 interface PaginationProps {
   length: any
