@@ -2,9 +2,9 @@ import { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
     schema: 'https://api.thegraph.com/subgraphs/name/ensdomains/ens',
-    documents: ['./**/*.ts'],
+    documents: ['utils/**/*.ts'],
     generates: {
-        './types/__generated__/': {
+        './types/queries/': {
             preset: 'client',
             plugins: [],
             presetConfig: {

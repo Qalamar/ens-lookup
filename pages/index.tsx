@@ -1,22 +1,13 @@
 import { useQuery } from '@apollo/client'
+import Domains from 'components/Domains'
 import Pagination from 'components/Pagination'
+import Search from 'components/Search'
 import Shimmer from 'components/Shimmer'
-import {
-  Layout,
-  Scrollable,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from 'components/Styles'
-import { motion } from 'framer-motion'
+import { Layout } from 'components/Styles'
 import { useEffect, useState } from 'react'
 import 'twin.macro'
-import { GetRegistrationsQuery } from 'types/__generated__/graphql'
-import { paginate } from 'utils/helpers'
-import { GET_REGISTRATIONS } from 'utils/quries'
+import { GetRegistrationsQuery } from 'types/queries/graphql'
+import { GET_REGISTRATIONS } from 'utils/queries'
 import { client } from './_app'
 
 const App = () => {
@@ -66,45 +57,8 @@ const App = () => {
   if (formattedData)
     return (
       <Layout>
-        <Scrollable>
-          <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  {['Registrant', 'Domain', 'Registration', 'Expiry'].map(column => (
-                    <TableCell key={column} scope="col">
-                      {column}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {paginate(formattedData, currentPage).map(item => (
-                  <motion.tr
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    key={item?.domain?.name}
-                  >
-                    <TableCell>{item?.registrant?.id}</TableCell>
-                    <TableCell>{item?.domain?.name}</TableCell>
-                    <TableCell>
-                      {new Date(
-                        item.registrationDate ? item.registrationDate * 1000 : '',
-                      ).toLocaleString('en-GB', { timeZone: 'UTC' })}
-                    </TableCell>
-                    <TableCell>
-                      {new Date(item.expiryDate ? item.expiryDate * 1000 : '').toLocaleString(
-                        'en-GB',
-                        { timeZone: 'UTC' },
-                      )}
-                    </TableCell>
-                  </motion.tr>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Scrollable>
+        <Search />
+        <Domains data={formattedData} currentPage={currentPage} />
         <Pagination
           length={formattedData.length}
           currentPage={currentPage}

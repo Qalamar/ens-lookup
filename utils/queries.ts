@@ -1,4 +1,4 @@
-import { gql } from 'types/__generated__/gql';
+import { gql } from "types/queries"
 
 export const GET_REGISTRATIONS = gql(`
   query GetRegistrations($first: Int!, $skip: Int!) {
@@ -10,6 +10,18 @@ export const GET_REGISTRATIONS = gql(`
         }
         domain {
           name
+        }
+      }
+  }
+`)
+
+export const GET_DOMAIN = gql(`
+  query GetDomain($label: String!) {
+    registrations(where: { labelName: $label }) {
+        expiryDate
+        registrationDate
+        registrant {
+          id
         }
       }
   }

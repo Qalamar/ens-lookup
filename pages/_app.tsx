@@ -4,17 +4,9 @@ import type { AppProps } from 'next/app'
 import GlobalStyles from 'styles/GlobalStyles'
 import { WagmiConfig, createClient, configureChains, mainnet } from 'wagmi'
 import { publicProvider } from 'wagmi/providers/public'
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from '@apollo/client'
+import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client'
 
-const { chains, provider, webSocketProvider } = configureChains(
-  [mainnet],
-  [publicProvider()],
-)
+const { chains, provider, webSocketProvider } = configureChains([mainnet], [publicProvider()])
 
 export const client = createClient({
   autoConnect: true,

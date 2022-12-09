@@ -14,12 +14,17 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  query GetRegistrations($first: Int!, $skip: Int!) {\n    registrations(where: { labelName_not: null }, orderBy: registrationDate, orderDirection: desc, first: $first, skip: $skip) {\n        expiryDate\n        registrationDate\n        registrant {\n          id\n        }\n        domain {\n          name\n        }\n      }\n  }\n": types.GetRegistrationsDocument,
+    "\n  query GetDomain($label: String!) {\n    registrations(where: { labelName: $label }) {\n        expiryDate\n        registrationDate\n        registrant {\n          id\n        }\n      }\n  }\n": types.GetDomainDocument,
 };
 
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query GetRegistrations($first: Int!, $skip: Int!) {\n    registrations(where: { labelName_not: null }, orderBy: registrationDate, orderDirection: desc, first: $first, skip: $skip) {\n        expiryDate\n        registrationDate\n        registrant {\n          id\n        }\n        domain {\n          name\n        }\n      }\n  }\n"): (typeof documents)["\n  query GetRegistrations($first: Int!, $skip: Int!) {\n    registrations(where: { labelName_not: null }, orderBy: registrationDate, orderDirection: desc, first: $first, skip: $skip) {\n        expiryDate\n        registrationDate\n        registrant {\n          id\n        }\n        domain {\n          name\n        }\n      }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GetDomain($label: String!) {\n    registrations(where: { labelName: $label }) {\n        expiryDate\n        registrationDate\n        registrant {\n          id\n        }\n      }\n  }\n"): (typeof documents)["\n  query GetDomain($label: String!) {\n    registrations(where: { labelName: $label }) {\n        expiryDate\n        registrationDate\n        registrant {\n          id\n        }\n      }\n  }\n"];
 
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
