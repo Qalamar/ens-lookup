@@ -10,6 +10,7 @@ import { GetRegistrationsQuery } from 'types/queries/graphql'
 import { GET_REGISTRATIONS } from 'utils/queries'
 import { client } from './_app'
 import { lookupRegistrantId } from 'utils/helpers'
+
 const App = () => {
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [formattedData, setFormattedData] = useState<GetRegistrationsQuery['registrations']>()
@@ -17,6 +18,7 @@ const App = () => {
   const { loading, error, data, fetchMore } = useQuery(GET_REGISTRATIONS, {
     variables: { first: 20, skip: 0 },
     notifyOnNetworkStatusChange: true,
+    pollInterval: 15000,
   })
 
   useEffect(() => {
@@ -34,7 +36,6 @@ const App = () => {
     }
   }, [data])
 
-  if (loading || isResolving) return <Shimmer />
   if (error) return `Error! ${error}`
 
   const handlePageChange = (page: number): void => {
@@ -54,8 +55,14 @@ const App = () => {
     return (
       <Layout>
         <Search />
-        <Domains data={formattedData} currentPage={currentPage} />
-        <Pagination length={formattedData.length} currentPage={currentPage} handlePageChange={handlePageChange} />
+        {loading || isResolving ? (
+          <Shimmer />
+        ) : (
+          <>
+            <Domains data={formattedData} currentPage={currentPage} />
+            <Pagination length={formattedData.length} currentPage={currentPage} handlePageChange={handlePageChange} />
+          </>
+        )}
       </Layout>
     )
 }

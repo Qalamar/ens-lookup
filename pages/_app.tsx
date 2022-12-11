@@ -18,10 +18,17 @@ const apolloCache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
+        read(existing, { args: { skip = 0, first = existing?.length } = {} }) {
+          return existing && existing.slice(skip, skip + first)
+        },
         registrations: {
           keyArgs: false,
-          merge(existing = [], incoming) {
-            return [...existing, ...incoming]
+          merge(existing, incoming, { args: { skip = 0 } }) {
+            const merged = existing ? existing.slice(0) : []
+            for (let i = 0; i < incoming.length; ++i) {
+              merged[skip + i] = incoming[i]
+            }
+            return merged
           },
         },
       },

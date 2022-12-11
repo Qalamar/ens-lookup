@@ -1,12 +1,4 @@
-import {
-  Scrollable,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from 'components/Styles'
+import { Scrollable, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from 'components/Styles'
 import { motion } from 'framer-motion'
 import 'twin.macro'
 import { getDate, paginate, truncateEthAddress } from 'utils/helpers'
@@ -37,9 +29,7 @@ const Domains = ({ data, currentPage }: DomainsProps) => {
                 exit={{ opacity: 0 }}
                 key={item?.domain?.name}
               >
-                <TableCell title={item?.registrant?.id}>
-                  {truncateEthAddress(item?.registrant?.id)}
-                </TableCell>
+                <TableCell title={item?.registrant?.id}>{truncateEthAddress(item?.registrant?.id)}</TableCell>
                 <TableCell>{item?.domain?.name}</TableCell>
                 <TableCell>{getDate(item.registrationDate)}</TableCell>
                 <TableCell>{getDate(item.expiryDate)}</TableCell>

@@ -5,7 +5,7 @@ const Layout = styled.div`
 `
 
 const Scrollable = styled.div`
-  ${tw`-mx-4 mt-8 overflow-x-auto sm:-mx-6 lg:-mx-8`}
+  ${tw`-mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8`}
 `
 
 const TableContainer = styled.div`
@@ -58,10 +58,10 @@ const PaginationButton = styled.button(({ numbered, active }: { numbered?: boole
 ])
 
 const DomainInfo = styled.div`
-${tw`mt-10 text-sm flex-col max-w-xs mx-auto flex justify-center`}`
+${tw`my-4 text-sm flex-col max-w-xs mx-auto flex justify-center`}`
 
 const Form = styled.form`
-${tw`sm:flex justify-center my-6`}`
+${tw`sm:flex justify-center mt-6`}`
 
 const InputContainer = styled.div`
 ${tw`flex flex-col space-y-1`}`

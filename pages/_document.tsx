@@ -10,10 +10,7 @@ export default class MyDocument extends Document {
     initialProps.styles = (
       <React.Fragment>
         {initialProps.styles}
-        <style
-          data-emotion-css={critical.ids.join(' ')}
-          dangerouslySetInnerHTML={{ __html: critical.css }}
-        />
+        <style data-emotion-css={critical.ids.join(' ')} dangerouslySetInnerHTML={{ __html: critical.css }} />
       </React.Fragment>
     )
 
@@ -25,10 +22,6 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <title>ENS Lookup</title>
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width"
-          />
         </Head>
         <body>
           <Main />
