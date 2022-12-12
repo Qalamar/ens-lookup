@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 import { client } from 'pages/_app'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { addressRegex, getDate, lookupRegistrantId } from 'utils/helpers'
+import { ensDomainRegex, getDate, lookupRegistrantId } from 'utils/helpers'
 import { GET_DOMAIN } from 'utils/queries'
 import Spinner from '../Spinner'
 import { Button, ButtonContainer, DomainInfo, ErrorMessage, Form, Input, InputContainer } from '../Styles'
@@ -41,17 +41,8 @@ const Search = () => {
   }, [data?.registrations[0]])
 
   const onSubmit = async (data: FormValues) => {
-    const addressOnlyRegex = /(\b0x[a-f0-9]{40}\b)/
-
-    if (addressOnlyRegex.test(data.address)) {
-      await client.provider.lookupAddress(data.address).then(value => {
-        setEnsDomain(value ? value : data.address)
-        refetch({ label: value ? value : data.address.replace('.eth', '') })
-      })
-    } else {
-      setEnsDomain(data.address)
-      refetch({ label: data.address.replace('.eth', '') })
-    }
+    setEnsDomain(data.address)
+    refetch({ label: data.address.replace('.eth', '') })
   }
 
   return (
@@ -63,10 +54,10 @@ const Search = () => {
             placeholder="Enter an address"
             {...register('address', {
               required: true,
-              pattern: addressRegex,
+              pattern: ensDomainRegex,
             })}
           />
-          {errors.address && <ErrorMessage>Please type a valid ENS domain or address</ErrorMessage>}
+          {errors.address && <ErrorMessage>Please type a valid ENS domain</ErrorMessage>}
         </InputContainer>
         <ButtonContainer>
           <Button type="submit" disabled={loading}>

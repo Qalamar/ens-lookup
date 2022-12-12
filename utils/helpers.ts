@@ -1,7 +1,7 @@
 import { GetRegistrationsQuery } from 'types/queries/graphql'
 
+export const ensDomainRegex = /([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)*[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.eth$/g
 const truncateRegex = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/
-export const addressRegex = /^(0x[a-fA-F0-9]{40})|([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)*[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.eth$/g
 
 export const paginate = (data: GetRegistrationsQuery['registrations'], pageIndex: number) => {
   var endIndex = Math.min((pageIndex + 1) * 10, data.length)
